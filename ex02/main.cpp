@@ -7,25 +7,50 @@
 
 int main()
 {
-    std::cout << "--- ABSTRACT CLASS TEST ---" << std::endl;
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    std::cout << "--- SUBJECT TEST: ARRAY OF ANIMALS ---" << std::endl;
+    const int count = 4;
+    Animal* animals[count];
 
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
+    for (int i = 0; i < count / 2; i++)
+        animals[i] = new Dog();
 
-    i->makeSound();
-    j->makeSound();
+    for (int i = count / 2; i < count; i++)
+        animals[i] = new Cat();
 
-    delete j;
-    delete i;
+    std::cout << "--- DELETING ANIMALS ---" << std::endl;
+    for (int i = 0; i < count; i++)
+        delete animals[i];
 
-    std::cout << "\n--- DEEP COPY TEST ---" << std::endl;
+    std::cout << "--- DEEP COPY TEST ---" << std::endl;
+
     Dog basic;
+    basic.setIdea(0, "idea_original");
+
     {
         Dog tmp = basic;
+
+        std::cout << "basic idea[0]: " << basic.getIdea(0) << std::endl;
+        std::cout << "tmp   idea[0]: " << tmp.getIdea(0) << std::endl;
+
+        tmp.setIdea(0, "idea_modificada_en_tmp");
+
+        std::cout << "basic idea[0] after tmp change: " << basic.getIdea(0) << std::endl;
+        std::cout << "tmp   idea[0] after tmp change: " << tmp.getIdea(0) << std::endl;
     }
 
-    std::cout << "\n--- END OF PROGRAM ---" << std::endl;
+    {
+        Dog assigned;
+        assigned = basic;
+
+        std::cout << "basic    idea[0]: " << basic.getIdea(0) << std::endl;
+        std::cout << "assigned idea[0]: " << assigned.getIdea(0) << std::endl;
+
+        assigned.setIdea(0, "idea_modificada_en_assigned");
+
+        std::cout << "basic    idea[0] after assigned change: " << basic.getIdea(0) << std::endl;
+        std::cout << "assigned idea[0] after assigned change: " << assigned.getIdea(0) << std::endl;
+    }
+
+    std::cout << "--- END OF PROGRAM ---" << std::endl;
     return 0;
 }
