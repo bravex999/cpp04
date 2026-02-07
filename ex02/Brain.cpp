@@ -27,3 +27,18 @@ Brain::~Brain()
 {
     std::cout << "Brain Destructor called" << std::endl;
 }
+
+void Brain::setIdea(int index, const std::string& idea)
+{
+    if (index < 0 || index >= 100)
+        return;
+    this->ideas[index] = idea;
+}
+
+const std::string& Brain::getIdea(int index) const
+{
+    static const std::string empty = "";
+    if (index < 0 || index >= 100)
+        return empty;
+    return this->ideas[index];
+}
