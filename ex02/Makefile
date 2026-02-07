@@ -4,7 +4,7 @@ SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongAnimal.cpp WrongCat.cpp
 OBJ = $(SRC:.cpp=.o)
 
 CXX = c++
-CXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
