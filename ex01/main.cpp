@@ -13,20 +13,45 @@ int main()
 
     for (int i = 0; i < count / 2; i++)
         animals[i] = new Dog();
-    
+
     for (int i = count / 2; i < count; i++)
         animals[i] = new Cat();
 
-    std::cout << "\n--- DELETING ANIMALS ---" << std::endl;
+    std::cout << "--- DELETING ANIMALS ---" << std::endl;
     for (int i = 0; i < count; i++)
         delete animals[i];
 
-    std::cout << "\n--- DEEP COPY TEST ---" << std::endl;
+    std::cout << "--- DEEP COPY TEST ---" << std::endl;
+
     Dog basic;
+    basic.setIdea(0, "idea_original");
+
     {
         Dog tmp = basic;
+
+        std::cout << "basic idea[0]: " << basic.getIdea(0) << std::endl;
+        std::cout << "tmp   idea[0]: " << tmp.getIdea(0) << std::endl;
+
+        tmp.setIdea(0, "idea_modificada_en_tmp");
+
+        std::cout << "basic idea[0] after tmp change: " << basic.getIdea(0) << std::endl;
+        std::cout << "tmp   idea[0] after tmp change: " << tmp.getIdea(0) << std::endl;
     }
 
-    std::cout << "\n--- END OF PROGRAM ---" << std::endl;
+    {
+        Dog assigned;
+        assigned = basic;
+
+        std::cout << "basic    idea[0]: " << basic.getIdea(0) << std::endl;
+        std::cout << "assigned idea[0]: " << assigned.getIdea(0) << std::endl;
+
+        assigned.setIdea(0, "idea_modificada_en_assigned");
+
+        std::cout << "basic    idea[0] after assigned change: " << basic.getIdea(0) << std::endl;
+        std::cout << "assigned idea[0] after assigned change: " << assigned.getIdea(0) << std::endl;
+    }
+
+    std::cout << "--- END OF PROGRAM ---" << std::endl;
     return 0;
 }
+
